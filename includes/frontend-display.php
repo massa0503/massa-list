@@ -39,11 +39,11 @@ function massa_song_list() {
 
     $labels = array(
         'button' => '',
-        $song_list_setting['songtitle'] => '曲名(song title)',
-        $song_list_setting['artist'] => 'アーティスト(artist)',
-        $song_list_setting['sungday'] => '公開日(sung day)',
-        $song_list_setting['videotype'] => '種別(video type)',
-        $song_list_setting['videotitle'] => '元動画タイトル(video title)'
+        'songtitle' => '曲名(song title)',
+        'artist' => 'アーティスト(artist)',
+        'sungday' => '公開日(sung day)',
+        'videotype' => '種別(video type)',
+        'videotitle' => '元動画タイトル(video title)'
     );
 
     $per_page = isset($_GET['per_page']) ? absint($_GET['per_page']) : 10; // デフォルト10件
@@ -68,7 +68,7 @@ function massa_song_list() {
     $offset = ($paged - 1) * $per_page;
 
     // ソート条件を追加
-    $sort_column = in_array(get_query_var('sort_column'), array_keys($labels)) ? get_query_var('sort_column') : $song_list_setting['sungday'];
+    $sort_column = in_array(get_query_var('sort_column'), array_keys($labels)) ? $song_list_setting[get_query_var('sort_column')] : $song_list_setting['sungday'];
     $sort_order = strtoupper(get_query_var('sort_order')) === 'ASC' ? 'ASC' : 'DESC';
     $add_sort = 'id';
     if ($sort_column != $song_list_setting['sungday']) {
@@ -172,7 +172,7 @@ function massa_song_list() {
                                     $contents = esc_html($row_data['status']);
                                 }
                             } else {
-                                $contents = esc_html($row_data[$key] ?? '');
+                                $contents = esc_html($row_data[$song_list_setting[$key]] ?? '');
                             }
                             echo '<td'.$add_class.'>' . $contents . '</td>';
                         }

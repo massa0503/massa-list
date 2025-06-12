@@ -2,7 +2,7 @@
 /*
 Plugin Name: My List
 Description: Nija Tableで作成したテーブルを利用して各リストを表示する
-Version: 1.0.0
+Version: 1.0.1
 Author: massa
 */
 
