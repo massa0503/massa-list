@@ -68,13 +68,13 @@ function massa_song_list() {
     $offset = ($paged - 1) * $per_page;
 
     // ソート条件を追加
-    $sort_column = in_array(get_query_var('sort_column'), array_keys($labels)) ? $song_list_setting[get_query_var('sort_column')] : $song_list_setting['sungday'];
+    $sort_column = in_array(get_query_var('sort_column'), array_keys($labels)) ? get_query_var('sort_column') : 'sungday';
     $sort_order = strtoupper(get_query_var('sort_order')) === 'ASC' ? 'ASC' : 'DESC';
     $add_sort = 'id';
-    if ($sort_column != $song_list_setting['sungday']) {
+    if ($sort_column != 'sungday') {
         $add_sort = "JSON_EXTRACT(value, '$.".$song_list_setting['sungday']."') DESC, id";
     }
-    $orderby = " ORDER BY JSON_EXTRACT(value, '$.$sort_column') $sort_order, $add_sort";
+    $orderby = " ORDER BY JSON_EXTRACT(value, '$.$song_list_setting[$sort_column]') $sort_order, $add_sort";
 
     // 前回の検索キーワードを取得
     $previous_massa_ls = isset($_SESSION['previous_massa_ls']) ? $_SESSION['previous_massa_ls'] : '';
@@ -169,7 +169,7 @@ function massa_song_list() {
                                     $contents .= "<a href='".$post_url."' target='_blank' rel='noopener noreferrer' class='ml-btn ml-post-btn'><span class='ml-btn-icon'></a>";
                                     $add_class = ' class="ml-actions"';
                                 } else {
-                                    $contents = esc_html($row_data['status']);
+                                    $contents = esc_html($row_data[$song_list_setting['status']]);
                                 }
                             } else {
                                 $contents = esc_html($row_data[$song_list_setting[$key]] ?? '');

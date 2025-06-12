@@ -51,8 +51,8 @@ function massa_list_setting_page() {
         if ($song_list_settings) {
             $wpdb->update(
                 $tablename,
-                ['list_name' => 'songs'],
                 ['settings' => json_encode($settings)],
+                ['list_name' => 'songs'],
                 ['%s'],
                 ['%s']
             );
