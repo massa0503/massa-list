@@ -1,0 +1,347 @@
+/* フォーム全体 */
+form {
+    display: flex;
+    flex-direction: row; /* デフォルト：横並び */
+    align-items: center;
+    gap: 15px; /* 検索ボックスと件数選択の間隔 */
+    margin-bottom: 20px;
+}
+
+/* 検索フォーム */
+.mlsf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20em;
+    max-width: 100%;
+    border: 2px solid #fba746;
+    border-radius: 3px;
+}
+
+.mlsf input,
+.mlsf button {
+    width: 100%;
+    height: 45px;
+    padding: 5px 15px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+}
+
+.mlsf-box {
+    margin-bottom: 0px !important;
+}
+
+.mlsf input::placeholder {
+    color: #777777;
+}
+
+.mlsf .mlsf-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3em;
+    height: 45px;
+    border: none;
+    background-color: #fba746;
+    cursor: pointer;
+    position: relative;
+}
+
+.mlsf .mlsf-btn::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M18.031%2016.6168L22.3137%2020.8995L20.8995%2022.3137L16.6168%2018.031C15.0769%2019.263%2013.124%2020%2011%2020C6.032%2020%202%2015.968%202%2011C2%206.032%206.032%202%2011%202C15.968%202%2020%206.032%2020%2011C20%2013.124%2019.263%2015.0769%2018.031%2016.6168ZM16.0247%2015.8748C17.2475%2014.6146%2018%2012.8956%2018%2011C18%207.1325%2014.8675%204%2011%204C7.1325%204%204%207.1325%204%2011C4%2014.8675%207.1325%2018%2011%2018C12.8956%2018%2014.6146%2017.2475%2015.8748%2016.0247L16.0247%2015.8748Z%22%20fill%3D%22%23fff%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* 表示件数選択 */
+.ml-per-page {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ml-per-page-label {
+    white-space: nowrap;    
+    font-size: 18px;
+    color: #333;
+}
+
+select.ml-per-page-select {
+    height: 45px;
+    padding: 5px;
+    border: 2px solid #fba746;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    min-width: 100px; /* 件数選択の最小幅 */
+}
+
+select.ml-per-page-select:focus {
+    border-color: #e6953c;
+    box-shadow: 0 0 5px rgba(230, 149, 60, 0.3);
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    form {
+        flex-direction: column; /* 縦並び */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .mlsf {
+        width: 100%; /* 検索ボックスを全幅 */
+    }
+    .ml-per-page {
+        width: 100%; /* 件数選択を全幅 */
+    }
+    .ml-per-page-select {
+        width: 100%;
+        max-width: 150px; /* モバイルでの最大幅 */
+    }
+}
+
+/* テーブルを横スクロール可能にするコンテナ */
+.cdl-list {
+    overflow-x: auto;
+    margin-top: 20px;
+    -webkit-overflow-scrolling: touch;
+    scroll-margin-top: 70px;
+}
+
+.cdl-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    background-color: #ffffff; /* デフォルト背景 */
+}
+.cdl-table th, .cdl-table td {
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd; /* 横線のみ */
+    border-left: none; /* 縦線を削除 */
+    border-right: none; /* 縦線を削除 */
+}
+.cdl-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+/* 奇数行と偶数行の色分け */
+.cdl-table tr:nth-child(odd) {
+    background-color: #ffffff; /* 奇数行：白 */
+}
+
+.cdl-table tr:nth-child(even) {
+    background-color: #f5f5f5; /* 偶数行：薄グレー */
+}
+
+/* ページネーションのラッパー */
+.ml-pagination {
+    display: flex !important;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+/* ページネーションリスト */
+.ml-pagination ul.page-numbers {
+    display: flex !important;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 5px; /* リンク間の間隔 */
+}
+
+/* 各リンク */
+.ml-pagination li .page-numbers {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #fba746 !important;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ml-pagination ul.page-numbers li {
+    overflow: visible !important;
+}
+
+/* 現在のページ */
+.ml-pagination li .page-numbers.current {
+    background-color: #fba746;
+    color: #fff;
+    cursor: default;
+}
+
+/* ホバー */
+.ml-pagination li .page-numbers:hover:not(.current) {
+    background-color: #e6953c; /* 濃いオレンジ */
+    color: #fff;
+}
+
+/* フォーカス（アクセシビリティ） */
+.ml-pagination li .page-numbers:focus {
+    outline: 2px solid #fba746;
+    outline-offset: 2px;
+}
+
+/* 前へ/次へリンク */
+.ml-pagination li .prev.page-numbers,
+.ml-pagination li .next.page-numbers {
+    width: auto;
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+/* アイコン（前へ/次へ） */
+.ml-pagination li .prev.page-numbers::before,
+.ml-pagination li .next.page-numbers::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 5px;
+}
+
+.massa-ls-hit {
+    display: flex;
+    justify-content: center;
+}
+
+.ml-pagination li .prev.page-numbers::before {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z%22%20fill%3D%22%23fba746%22%2F%3E%3C%2Fsvg%3E");
+}
+
+.ml-pagination li .next.page-numbers::after {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.59%2016.59L10%2018l6-6-6-6-1.41%201.41L13.17%2012z%22%20fill%3D%22%23fba746%22%2F%3E%3C%2Fsvg%3E");
+}
+
+/* ホバー時のアイコン色変更 */
+.ml-pagination li .prev.page-numbers:hover::before,
+.ml-pagination li .next.page-numbers:hover::after {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M15.41%207.41L14%206l-6%206%206%206%201.41-1.41L10.83%2012z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E"); /* 白 */
+}
+
+.ml-pagination li .next.page-numbers:hover::after {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8.59%2016.59L10%2018l6-6-6-6-1.41%201.41L13.17%2012z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E");
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .ml-pagination li .page-numbers {
+        width: 25px;
+        height: 35px;
+        font-size: 12px;
+    }
+    .ml-pagination li .prev.page-numbers,
+    .ml-pagination li .next.page-numbers {
+        padding: 0 0px;
+    }
+}
+
+/* アクション列 */
+.cdl-table .ml-actions {
+    display: flex;
+    gap: 10px; /* ボタン間の間隔 */
+    padding: 8px;
+    white-space: nowrap;
+}
+
+/* 共通ボタンスタイル */
+.ml-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 30px;
+    background-color: #fff;
+    border: 2px solid;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.ml-play-btn {
+    border-color: red;
+}
+
+/* ホバー */
+.ml-play-btn:hover {
+    background-color: red;
+}
+
+.ml-post-btn {
+    border-color: black;
+}
+
+/* ホバー */
+.ml-post-btn:hover {
+    background-color: black;
+}
+
+/* フォーカス（アクセシビリティ） */
+.ml-btn:focus {
+    outline: 2px solid #fba746;
+    outline-offset: 2px;
+}
+
+/* アイコン */
+.ml-btn .ml-btn-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* 動画ボタン */
+.ml-play-btn .ml-btn-icon {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8%205v14l11-7z%22%20fill%3D%22%23ff0000%22%2F%3E%3C%2Fsvg%3E"); /* 赤 */
+}
+
+.ml-play-btn:hover .ml-btn-icon {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M8%205v14l11-7z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E"); /* 白 */
+}
+
+/* Xポストボタン */
+.ml-post-btn .ml-btn-icon {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M18.244%202.25h3.308l-7.227%208.26%208.502%209.24H16.17l-5.214-6.817L4.99%2021.75H1.68l7.73-8.835L1.254%202.25H8.08l4.713%206.231zm-1.161%2017.52h1.833L7.084%204.126H5.117z%22%20fill%3D%22%23000000%22%2F%3E%3C%2Fsvg%3E"); /* 黒 */
+}
+
+.ml-post-btn:hover .ml-btn-icon {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M18.244%202.25h3.308l-7.227%208.26%208.502%209.24H16.17l-5.214-6.817L4.99%2021.75H1.68l7.73-8.835L1.254%202.25H8.08l4.713%206.231zm-1.161%2017.52h1.833L7.084%204.126H5.117z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E"); /* 白 */
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .ml-btn {
+        width: 35px;
+        height: 35px;
+    }
+    .ml-btn .ml-btn-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .cdl-table .ml-actions {
+        gap: 8px;
+    }
+}
